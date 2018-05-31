@@ -19,10 +19,11 @@ class FakeContainer extends Component {
   }
 
   handleCardClick = (ids) => {
-    const checkExistingCategory = this.props.categorizedSuccess.filter(pokemon => ids.includes(pokemon.id))
-    return checkExistingCategory.length
-      ? this.props.categorizedSuccess
-      : ids.map(mon => this.props.categorizeThunk(mon))
+    const existingIds = this.props.categorizedSuccess.map(pokemon => pokemon.id)
+    const checkExisting = ids.find(id => existingIds.includes(id))
+
+     ids.map(mon => this.props.categorizeThunk(mon))
+
   }
 
   toggleExpand = () => {
@@ -44,8 +45,14 @@ class FakeContainer extends Component {
       }}>
         <span>{type.name}</span>
         {
-          this.state.toggleExpand && this.props.categorizedSuccess.length > 0 && this.props.categorizedSuccess.map(pokemon => {
-          return <section className='poke-data'><p>{pokemon.name}</p><p>{pokemon.weight}</p><img src={pokemon.sprites} alt='Image of pokemon' /></section>
+          this.state.toggleExpand && this.props.categorizedSuccess.map((pokemon, index) => {
+          return <section
+                  className='poke-data'
+                  key={index}>
+                  <p className='poke-name'>{pokemon.name}</p>
+                  <p className='poke-weight'>{pokemon.weight}</p>
+                  <img className='poke-image' src={pokemon.sprites.front_default} alt='Pokemon' />
+                </section>
         })}
       </div>
     )
