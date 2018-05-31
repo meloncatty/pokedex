@@ -17,6 +17,6 @@ export const typeThunk = () => {
   return async (dispatch) => {
     dispatch(typesAreLoading)
     const url = 'http://localhost:3001/types'
-    fetch(url).then(response => response.json())
+    fetch(url).then(response => response.json()).then(types => typesSuccess(types))
   }
 }
