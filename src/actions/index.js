@@ -14,9 +14,8 @@ export const typesSuccess = (typesList) => ({
 })
 
 export const typeThunk = () => {
-  return async (dispatch) => {
-    dispatch(typesAreLoading)
+  return (dispatch) => {
     const url = 'http://localhost:3001/types'
-    fetch(url).then(response => response.json()).then(types => typesSuccess(types))
+    fetch(url).then(response => response.json()).then(types => dispatch(typesSuccess(types)))
   }
 }
