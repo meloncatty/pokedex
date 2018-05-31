@@ -19,7 +19,12 @@ class FakeContainer extends Component {
   }
 
   handleCardClick = (ids) => {
-    ids.map(mon => this.props.categorizeThunk(mon))
+    const checkExistingCategory = this.props.categorizedSuccess.filter(pokemon => ids.includes(pokemon.id))
+    if(checkExistingCategory.length) {
+      return this.props.categorizedSuccess
+    }
+    return ids.map(mon => this.props.categorizeThunk(mon))
+
   }
 
   toggleExpand = () => {
