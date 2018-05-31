@@ -33,7 +33,24 @@
   border: 1px solid #000;
   margin: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
   box-shadow: 3px 4px lightgrey;
+}
+
+.open {
+  transition-property: all;
+	transition-duration: .5s;
+  height: 300px;
+  overflow-y: scroll;
+  align-self: baseline;
+}
+
+.closed {
+  transition-property: all;
+  transition-duration: .2s;
+  height: 50px;
+}
+
+span {
+  margin-top: 10px;
 }

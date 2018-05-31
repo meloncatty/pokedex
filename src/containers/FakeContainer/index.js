@@ -2,9 +2,17 @@ import React, { Component } from 'react'
 import PropTypes, { shape, func, string } from 'prop-types'
 import { connect } from 'react-redux'
 import { typeThunk, categorizeThunk, categorizedSuccess } from '../../actions'
-import loadingAnimation from '../../assets/pikaWave.gif'
+import pikaWave from '../../assets/pikaWave.gif'
 
 class FakeContainer extends Component {
+
+  constructor() {
+    super()
+
+    this.state = {
+      toggleExpand: false
+    }
+  }
 
   componentDidMount() {
     this.props.typeThunk()
@@ -14,9 +22,25 @@ class FakeContainer extends Component {
     ids.map(mon => this.props.categorizeThunk(mon))
   }
 
+  toggleExpand = () => {
+    const updateStatus = this.state.toggleExpand ? false : true
+    this.setState({
+      toggleExpand: updateStatus
+    })
+  }
+
   makeTypeCards() {
+    const toggleClass = this.state.toggleExpand ? 'type-card open' : 'type-card closed'
     return this.props.typesSuccess.map((type, index) =>
-      <div className='type-card' key={index} onClick={() => {this.handleCardClick(type.pokemon)}}>{type.name}</div>
+      <div
+        className={toggleClass}
+        key={index}
+        onClick={() => {
+          this.handleCardClick(type.pokemon)
+          this.toggleExpand()
+      }}>
+        <span>{type.name}</span>
+      </div>
     )
   }
 
@@ -24,7 +48,7 @@ class FakeContainer extends Component {
     return (
       <div className='card-flex'>
         <section className='card-container'>
-        {this.makeTypeCards()}
+        {this.props.catIsLoading || this.props.isLoading ? <img src={pikaWave} alt='Loading' /> : this.makeTypeCards()}
         </section>
       </div>
     )
@@ -38,6 +62,7 @@ FakeContainer.propTypes = {
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
+  catIsLoading: state.catIsLoading,
   typesSuccess: state.typesSuccess
 })
 

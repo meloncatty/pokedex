@@ -28,7 +28,7 @@ export const typesSuccess = (initialState = [], action) => {
 export const categorizedIsLoading = (initialState = false, action) => {
   switch (action.type) {
     case 'CATEGORIZED_IS_LOADING':
-      return action.isLoading
+      return action.catIsLoading
     default:
       return initialState
   }
@@ -37,7 +37,7 @@ export const categorizedIsLoading = (initialState = false, action) => {
 export const categorizedHasErrored = (initialState = false, action) => {
   switch (action.type) {
     case 'CATEGORIZED_HAS_ERRORED':
-      return action.hasErrored
+      return action.catHasErrored
     default:
       return initialState
   }

@@ -15,12 +15,12 @@ export const typesSuccess = (typesList) => ({
 
 export const categorizedIsLoading = (bool) => ({
   type: 'CATEGORIZED_IS_LOADING',
-  isLoading: bool
+  catIsLoading: bool
 })
 
 export const categorizedHasErrored = (bool) => ({
   type: 'CATEGORIZED_HAS_ERRORED',
-  hasErrored: bool
+  catHasErrored: bool
 })
 
 export const categorizedSuccess = (pokemon) => ({
