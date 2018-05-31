@@ -25,7 +25,8 @@ export const categorizedHasErrored = (bool) => ({
 
 export const categorizedSuccess = (pokemon) => ({
   type: 'CATEGORIZED_SUCCESS',
-  pokemon
+  pokemon,
+  log: console.log(pokemon)
 })
 
 export function typeThunk() {
@@ -48,7 +49,6 @@ export function typeThunk() {
 
 export function categorizeThunk(id) {
   return (dispatch) => {
-    dispatch(categorizedSuccess({}))
     dispatch(categorizedIsLoading(true))
     const url = 'http://localhost:3001/pokemon/' + id
     return fetch(url)
@@ -60,7 +60,7 @@ export function categorizeThunk(id) {
         return response
       })
       .then(response => response.json())
-      .then(pokemon => dispatch(categorizedSuccess(pokemon)))
+      .then(pokemon => Promise.all(dispatch(categorizedSuccess(pokemon))))
       .catch(() => dispatch(categorizedHasErrored(true)))
   }
 }

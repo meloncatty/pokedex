@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes, { shape, func, string } from 'prop-types'
+import PropTypes, { func } from 'prop-types'
 import { connect } from 'react-redux'
-import { typeThunk, categorizeThunk, categorizedSuccess } from '../../actions'
+import { typeThunk, categorizeThunk } from '../../actions'
 import pikaWave from '../../assets/pikaWave.gif'
 
 class FakeContainer extends Component {
@@ -45,7 +45,7 @@ class FakeContainer extends Component {
         <span>{type.name}</span>
         {
           this.state.toggleExpand && this.props.categorizedSuccess.length > 0 && this.props.categorizedSuccess.map(pokemon => {
-          return <section className='poke-data'><p>{pokemon.name}</p><p>{pokemon.weight}</p><img src={pokemon.sprites} /></section>
+          return <section className='poke-data'><p>{pokemon.name}</p><p>{pokemon.weight}</p><img src={pokemon.sprites} alt='Image of pokemon' /></section>
         })}
       </div>
     )

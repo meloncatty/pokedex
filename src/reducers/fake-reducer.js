@@ -46,7 +46,7 @@ export const categorizedHasErrored = (initialState = false, action) => {
 export const categorizedSuccess = (initialState = [], action) => {
   switch (action.type) {
     case 'CATEGORIZED_SUCCESS':
-      return [action.pokemon]
+      return [action.pokemon, ...initialState]
     default:
       return initialState
   }
