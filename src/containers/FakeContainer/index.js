@@ -7,10 +7,7 @@ class FakeContainer extends Component {
   render() {
     return (
       <div>
-        <button onClick={()=> {
-          this.props.fakeAction()
-          alert('FAKE')
-        }}> FAKE </button>
+
       </div>
     );
   }
@@ -21,8 +18,6 @@ FakeContainer.propTypes = {
   fakeAction: func.isRequired
 };
 
-const mapStateToProps = ({ fake }) => ({ fake });
-const mapDispatchToProps = dispatch => ({ fakeAction:
-  () => dispatch(fakeAction())
-});
+const mapStateToProps = state => ({  });
+const mapDispatchToProps = dispatch => ({})
 export default connect(mapStateToProps, mapDispatchToProps)(FakeContainer);
