@@ -38,7 +38,6 @@
 }
 
 .open {
-  transition-property: all;
 	transition-duration: .5s;
   height: 300px;
   overflow-y: scroll;
@@ -46,9 +45,16 @@
 }
 
 .closed {
-  transition-property: all;
   transition-duration: .2s;
   height: 50px;
+}
+
+.poke-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
 }
 
 span {

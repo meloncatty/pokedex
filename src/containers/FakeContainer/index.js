@@ -40,6 +40,10 @@ class FakeContainer extends Component {
           this.toggleExpand()
       }}>
         <span>{type.name}</span>
+        {
+          this.state.toggleExpand && this.props.categorizedSuccess.length > 0 && this.props.categorizedSuccess.map(pokemon => {
+          return <section className='poke-data'><p>{pokemon.name}</p><p>{pokemon.weight}</p><img src={pokemon.sprites} /></section>
+        })}
       </div>
     )
   }
@@ -63,12 +67,12 @@ FakeContainer.propTypes = {
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
   catIsLoading: state.catIsLoading,
-  typesSuccess: state.typesSuccess
+  typesSuccess: state.typesSuccess,
+  categorizedSuccess: state.categorizedSuccess
 })
 
 const mapDispatchToProps = dispatch => ({
   typeThunk: () => dispatch(typeThunk()),
-  categorizeThunk: (ids) => dispatch(categorizeThunk(ids)),
-  categorizedSuccess: (pokemon) => dispatch(categorizedSuccess(pokemon))
+  categorizeThunk: (ids) => dispatch(categorizeThunk(ids))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(FakeContainer)

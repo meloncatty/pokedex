@@ -48,6 +48,7 @@ export function typeThunk() {
 
 export function categorizeThunk(id) {
   return (dispatch) => {
+    dispatch(categorizedSuccess({}))
     dispatch(categorizedIsLoading(true))
     const url = 'http://localhost:3001/pokemon/' + id
     return fetch(url)
