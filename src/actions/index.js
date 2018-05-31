@@ -13,9 +13,19 @@ export const typesSuccess = (typesList) => ({
   typesList
 })
 
-export const categorizedMons = (mons) => ({
-  type: 'CATEGORIZED_MONS',
-  specificTypes: mons
+export const categorizedIsLoading = (bool) => ({
+  type: 'CATEGORIZED_IS_LOADING',
+  isLoading: bool
+})
+
+export const categorizedHasErrored = (bool) => ({
+  type: 'CATEGORIZED_HAS_ERRORED',
+  hasErrored: bool
+})
+
+export const categorizedSuccess = (pokemon) => ({
+  type: 'CATEGORIZED_SUCCESS',
+  pokemon
 })
 
 export function typeThunk() {
@@ -38,18 +48,18 @@ export function typeThunk() {
 
 export function categorizeThunk(id) {
   return (dispatch) => {
-    dispatch(typesAreLoading(true))
-    const url = 'http://localhost:3001/types${id}'
+    dispatch(categorizedIsLoading(true))
+    const url = 'http://localhost:3001/pokemon/' + id
     return fetch(url)
       .then(response => {
         if(!response.ok) {
           throw Error(response.statusText)
         }
-        dispatch(typesAreLoading(false))
+        dispatch(categorizedIsLoading(false))
         return response
       })
       .then(response => response.json())
-      .then(mons => dispatch(categorizedMons(mons)))
-      .catch(() => dispatch(typesHaveErrored(true)))
+      .then(pokemon => dispatch(categorizedSuccess(pokemon)))
+      .catch(() => dispatch(categorizedHasErrored(true)))
   }
 }

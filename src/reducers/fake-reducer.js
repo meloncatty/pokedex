@@ -24,3 +24,30 @@ export const typesSuccess = (initialState = [], action) => {
       return initialState
   }
 }
+
+export const categorizedIsLoading = (initialState = false, action) => {
+  switch (action.type) {
+    case 'CATEGORIZED_IS_LOADING':
+      return action.isLoading
+    default:
+      return initialState
+  }
+}
+
+export const categorizedHasErrored = (initialState = false, action) => {
+  switch (action.type) {
+    case 'CATEGORIZED_HAS_ERRORED':
+      return action.hasErrored
+    default:
+      return initialState
+  }
+}
+
+export const categorizedSuccess = (initialState = [], action) => {
+  switch (action.type) {
+    case 'CATEGORIZED_SUCCESS':
+      return [action.pokemon]
+    default:
+      return initialState
+  }
+}

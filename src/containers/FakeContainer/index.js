@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes, { shape, func, string } from 'prop-types'
 import { connect } from 'react-redux'
-import { typeThunk } from '../../actions'
+import { typeThunk, categorizeThunk, categorizedSuccess } from '../../actions'
 import loadingAnimation from '../../assets/pikaWave.gif'
 
 class FakeContainer extends Component {
@@ -10,9 +10,13 @@ class FakeContainer extends Component {
     this.props.typeThunk()
   }
 
+  handleCardClick = (ids) => {
+    ids.map(mon => this.props.categorizeThunk(mon))
+  }
+
   makeTypeCards() {
-    return this.props.typesSuccess.map(type =>
-      <div className='type-card'>{type.name}</div>
+    return this.props.typesSuccess.map((type, index) =>
+      <div className='type-card' key={index} onClick={() => {this.handleCardClick(type.pokemon)}}>{type.name}</div>
     )
   }
 
@@ -28,7 +32,8 @@ class FakeContainer extends Component {
 }
 
 FakeContainer.propTypes = {
-  typeThunk: func.isRequired
+  typeThunk: func.isRequired,
+  categorizeThunk: func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -37,6 +42,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  typeThunk: () => dispatch(typeThunk())
+  typeThunk: () => dispatch(typeThunk()),
+  categorizeThunk: (ids) => dispatch(categorizeThunk(ids)),
+  categorizedSuccess: (pokemon) => dispatch(categorizedSuccess(pokemon))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(FakeContainer)
