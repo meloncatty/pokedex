@@ -12,13 +12,13 @@ class FakeContainer extends Component {
 
   makeTypeCards() {
     return this.props.typesSuccess.map(type =>
-      <div>{type.name}</div>
+      <div className='type-card'>{type.name}</div>
     )
   }
 
   render() {
     return (
-      <div>
+      <div className='card-flex'>
         <section className='card-container'>
         {this.makeTypeCards()}
         </section>

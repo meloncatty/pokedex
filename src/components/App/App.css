@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700,900');
 .App {
   text-align: center;
-  background-color: orangered;
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -10,8 +9,31 @@
   letter-spacing: .5em;
   font-weight: 700;
   height: 4em;
+  background: orangered;
 }
 
 .card-container {
   background-color: floralwhite;
+  display: flex;
+  width: 1000px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.type-card {
+  width: 30%;
+  height: 50px;
+  border: 1px solid #000;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 4px lightgrey;
 }
