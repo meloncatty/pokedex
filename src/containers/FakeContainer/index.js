@@ -7,7 +7,7 @@ class FakeContainer extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => { typeThunk() }}>click me</button>
+        <button onClick={() => { this.props.typeThunk() }}>click me</button>
       </div>
     );
   }
@@ -19,5 +19,8 @@ FakeContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({  });
-const mapDispatchToProps = dispatch => ({})
+
+const mapDispatchToProps = dispatch => ({
+  typeThunk: () => dispatch(typeThunk())
+})
 export default connect(mapStateToProps, mapDispatchToProps)(FakeContainer);

@@ -13,9 +13,20 @@ export const typesSuccess = (typesList) => ({
   typesList
 })
 
-export const typeThunk = () => {
+export function typeThunk() {
   return (dispatch) => {
+    dispatch(typesAreLoading(true))
     const url = 'http://localhost:3001/types'
-    fetch(url).then(response => response.json()).then(types => dispatch(typesSuccess(types)))
+    return fetch(url)
+      .then(response => {
+        if(!response.ok) {
+          throw Error(response.statusText)
+        }
+        dispatch(typesAreLoading(false))
+        return response
+      })
+      .then(response => response.json())
+      .then(types => dispatch(typesSuccess(types)))
+      .catch(() => dispatch(typesHaveErrored(true)))
   }
 }
